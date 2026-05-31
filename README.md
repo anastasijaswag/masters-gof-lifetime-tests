@@ -141,7 +141,7 @@ mle_weibull_interval(t1, t2)
 
 Во всех файлах используется единая параметризация:
 
-$$F(x;\, \beta, \eta) = 1 - \exp\!\left(-\left(\frac{x}{\eta}\right)^{\!\beta}\right), \quad x \geq 0$$
+$$F(x;\, \beta, \eta) = 1 - \exp\\left(-\left(\frac{x}{\eta}\right)^{\\beta}\right), \quad x \geq 0$$
 
 - `beta` — параметр формы
 - `eta` — параметр масштаба
