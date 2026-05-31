@@ -219,7 +219,7 @@ choose_m_composite_weibull <- function(fit, n, beta_hat, eta_hat,
 #            левая цензура: L = 0;  правая цензура: R = Inf
 # ------------------------------------------------------------------------------
 
-pf_lb_gof_weibull <- function(L, R,
+pf.lb.gof.weibull <- function(L, R,
                                alpha     = 0.05,
                                rho       = NULL,
                                gamma     = 1/3,
@@ -347,17 +347,17 @@ if (FALSE) {
   # H0 верна: X ~ Weibull(beta=2, eta=3)
   obs <- make_intervals(rweibull(n, shape = 2, scale = 3), n)
   cat("\n===== H0 верна: X ~ Weibull(beta=2, eta=3) =====\n")
-  pf_lb_gof_weibull(obs$L, obs$R)
+  pf.lb.gof.weibull(obs$L, obs$R)
 
   # H1: X ~ LogNormal(1, 0.5)
   obs2 <- make_intervals(rlnorm(n, meanlog = 1, sdlog = 0.5), n)
   cat("\n===== H1: X ~ LogNormal(1, 0.5) =====\n")
-  pf_lb_gof_weibull(obs2$L, obs2$R)
+  pf.lb.gof.weibull(obs2$L, obs2$R)
 
   # Проверка согласованности: Exp(2) = Weibull(beta=1, eta=2)
   obs3 <- make_intervals(rexp(n, rate = 1/2), n)
   cat("\n===== Проверка: X ~ Exp(2) = Weibull(beta=1, eta=2) =====\n")
-  res <- pf_lb_gof_weibull(obs3$L, obs3$R)
+  res <- pf.lb.gof.weibull(obs3$L, obs3$R)
   cat("  beta_hat (ожидается ~1):", round(res$beta_hat, 4), "\n")
   cat("  eta_hat  (ожидается ~2):", round(res$eta_hat, 4), "\n")
 }

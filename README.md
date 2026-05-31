@@ -40,10 +40,10 @@ install.packages(c("interval", "goftest"))
 
 | Файл | Функция | Гипотеза |
 |------|---------|----------|
-| `simple_test_Exp.R` | `lb_gof_simple_exp()` | Простая: F = Exp(eta), eta известно |
-| `simple_test_Weibull.R` | `lb_gof_simple_weibull()` | Простая: F = Weibull(beta, eta), параметры известны |
-| `complex_test_Exp.R` | `pf_lb_gof_exp()` | Сложная: F ∈ {Exp(eta) \| eta > 0} |
-| `complex_test_Weibull.R` | `pf_lb_gof_weibull()` | Сложная: F ∈ {Weibull(beta, eta) \| beta, eta > 0} |
+| `simple_test_Exp.R` | `lb.gof.simple.exp()` | Простая: F = Exp(eta), eta известно |
+| `simple_test_Weibull.R` | `lb.gof.simple.weibull()` | Простая: F = Weibull(beta, eta), параметры известны |
+| `complex_test_Exp.R` | `pf.lb.gof.exp()` | Сложная: F ∈ {Exp(eta) \| eta > 0} |
+| `complex_test_Weibull.R` | `pf.lb.gof.weibull()` | Сложная: F ∈ {Weibull(beta, eta) \| beta, eta > 0} |
 
 Все четыре критерия реализуют метод LB-GOF / PF-LB-GOF на основе непараметрической оценки максимального правдоподобия (NPMLE, алгоритм Тёрнбулла) и статистики Крамера–фон Мизеса (Ren, 2003).
 
@@ -51,8 +51,8 @@ install.packages(c("interval", "goftest"))
 
 | Файл | Функция | Описание |
 |------|---------|----------|
-| `right_censoring_Exp.R` | `CENS.test.my()` | Критерии W² и A² для экспоненциального распределения, табличные критические значения (D'Agostino & Stephens, 1986) |
-| `right_censoring_Weibull.R` | `zhu_weibull_test()` | Параметрический бутстрэп-критерий для распределения Вейбулла (Zhu, 2020) |
+| `right_censoring_Exp.R` | `gof.exp.censored()` | Критерии W² и A² для экспоненциального распределения, табличные критические значения (D'Agostino & Stephens, 1986) |
+| `right_censoring_Weibull.R` | `gof.weibull.censored()` | Параметрический бутстрэп-критерий для распределения Вейбулла (Zhu, 2020) |
 
 ---
 
@@ -71,7 +71,7 @@ source("complex_test_Weibull.R")
 
 # L, R — левые и правые границы интервалов наблюдения
 # левая цензура: L = 0;  правая цензура: R = Inf
-result <- pf_lb_gof_weibull(L, R, alpha = 0.05)
+result <- pf.lb.gof.weibull(L, R, alpha = 0.05)
 ```
 
 ### Интервальная цензура — сложная гипотеза (экспонента)
@@ -79,7 +79,7 @@ result <- pf_lb_gof_weibull(L, R, alpha = 0.05)
 ```r
 source("complex_test_Exp.R")
 
-result <- pf_lb_gof_exp(L, R, alpha = 0.05)
+result <- pf.lb.gof.exp(L, R, alpha = 0.05)
 ```
 
 ### Интервальная цензура — простая гипотеза
@@ -88,7 +88,7 @@ result <- pf_lb_gof_exp(L, R, alpha = 0.05)
 source("simple_test_Weibull.R")
 
 # beta и eta — известные параметры нулевой гипотезы
-result <- lb_gof_simple_weibull(L, R, beta = 2, eta = 3)
+result <- lb.gof.simple.weibull(L, R, beta = 2, eta = 3)
 ```
 
 ### Правая цензура II типа — Вейбулл (бутстрэп Жу)
@@ -97,7 +97,7 @@ result <- lb_gof_simple_weibull(L, R, beta = 2, eta = 3)
 source("right_censoring_Weibull.R")
 
 # x_obs — наблюдаемые отказы (первые m из n), n — полный объём
-result <- zhu_weibull_test(x_obs, n = 100, B = 499)
+result <- gof.weibull.censored(x_obs, n = 100, B = 499)
 ```
 
 ### Правая цензура II типа — экспонента (Стивенс)
@@ -105,7 +105,7 @@ result <- zhu_weibull_test(x_obs, n = 100, B = 499)
 ```r
 source("right_censoring_Exp.R")
 
-result <- CENS.test.my(x_obs, n = 100, alpha = 0.05)
+result <- gof.exp.censored(x_obs, n = 100, alpha = 0.05)
 ```
 
 ### Полная выборка — критерий КС
@@ -141,7 +141,7 @@ mle_weibull_interval(t1, t2)
 
 Во всех файлах используется единая параметризация:
 
-$$F(x;\, \beta, \eta) = 1 - \exp\\left(-\left(\frac{x}{\eta}\right)^{\\beta}\right), \quad x \geq 0$$
+$$F(x;\, \beta, \eta) = 1 - \exp\!\left(-\left(\frac{x}{\eta}\right)^{\!\beta}\right), \quad x \geq 0$$
 
 - `beta` — параметр формы
 - `eta` — параметр масштаба

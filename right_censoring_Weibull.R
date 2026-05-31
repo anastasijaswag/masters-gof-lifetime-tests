@@ -116,7 +116,7 @@ stat_A2_typeII <- function(u, m, n) {
 #   alpha  — уровень значимости
 # ------------------------------------------------------------------------------
 
-zhu_weibull_test <- function(x_obs, n, B = 499, alpha = 0.05) {
+gof.weibull.censored <- function(x_obs, n, B = 499, alpha = 0.05) {
 
   m     <- length(x_obs)
   x_obs <- sort(x_obs)
@@ -232,5 +232,5 @@ if (FALSE) {
   set.seed(123)
   n     <- 100
   x_obs <- sort(rweibull(n, shape = 2, scale = 3))[1:80]  # m = 80 из n = 100
-  zhu_weibull_test(x_obs, n = n, B = 499, alpha = 0.05)
+  gof.weibull.censored(x_obs, n = n, B = 499, alpha = 0.05)
 }

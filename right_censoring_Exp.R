@@ -16,7 +16,7 @@
 #   alpha  — уровень значимости (по умолчанию 0.05)
 # ------------------------------------------------------------------------------
 
-CENS.test.my <- function(x_obs, n, alpha = 0.05) {
+gof.exp.censored <- function(x_obs, n, alpha = 0.05) {
 
   m <- length(x_obs)
   x <- sort(x_obs)
@@ -146,5 +146,5 @@ if (FALSE) {
   set.seed(123)
   n     <- 100
   x_obs <- sort(rexp(n, rate = 1))[1:80]   # выборка II типа: m = 80 из n = 100
-  CENS.test.my(x_obs, n = n, alpha = 0.05)
+  gof.exp.censored(x_obs, n = n, alpha = 0.05)
 }

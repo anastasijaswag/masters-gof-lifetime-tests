@@ -118,7 +118,7 @@ choose_m_composite_exp <- function(fit, n, eta_hat,
 #            левая цензура: L = 0;  правая цензура: R = Inf
 # ------------------------------------------------------------------------------
 
-pf_lb_gof_exp <- function(L, R,
+pf.lb.gof.exp <- function(L, R,
                            alpha     = 0.05,
                            rho       = NULL,
                            gamma     = 1/3,
@@ -241,10 +241,10 @@ if (FALSE) {
   # H0 верна: X ~ Exp(2)
   obs <- make_intervals(rexp(n, rate = 1/2), n)
   cat("\n===== H0 верна: X ~ Exp(2) =====\n")
-  pf_lb_gof_exp(obs$L, obs$R)
+  pf.lb.gof.exp(obs$L, obs$R)
 
   # H1: X ~ Weibull(2, 3) — не экспонента
   obs2 <- make_intervals(rweibull(n, shape = 2, scale = 3), n)
   cat("\n===== H1: X ~ Weibull(2, 3) =====\n")
-  pf_lb_gof_exp(obs2$L, obs2$R)
+  pf.lb.gof.exp(obs2$L, obs2$R)
 }

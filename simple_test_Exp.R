@@ -102,7 +102,7 @@ choose_m_simple_exp <- function(fit, n, eta,
 #   eta   — известный параметр масштаба (eta > 0)
 # ------------------------------------------------------------------------------
 
-lb_gof_simple_exp <- function(L, R, eta,
+lb.gof.simple.exp <- function(L, R, eta,
                               alpha     = 0.05,
                               rho       = NULL,
                               gamma     = 1/3,
@@ -221,8 +221,8 @@ if (FALSE) {
   }
 
   cat("\n===== H0 верна: X ~ Exp(2), проверяем Exp(2) =====\n")
-  res_h0 <- lb_gof_simple_exp(L, R, eta = eta0)
+  res_h0 <- lb.gof.simple.exp(L, R, eta = eta0)
 
   cat("\n===== H1: проверяем неверное Exp(1) =====\n")
-  res_h1 <- lb_gof_simple_exp(L, R, eta = 1)
+  res_h1 <- lb.gof.simple.exp(L, R, eta = 1)
 }

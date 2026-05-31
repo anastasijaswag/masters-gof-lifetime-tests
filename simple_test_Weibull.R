@@ -110,7 +110,7 @@ choose_m_simple_weibull <- function(fit, n, beta, eta,
 #   eta   — известный параметр масштаба (eta > 0)
 # ------------------------------------------------------------------------------
 
-lb_gof_simple_weibull <- function(L, R, beta, eta,
+lb.gof.simple.weibull <- function(L, R, beta, eta,
                                   alpha     = 0.05,
                                   rho       = NULL,
                                   gamma     = 1/3,
@@ -231,10 +231,10 @@ if (FALSE) {
   }
 
   cat("\n===== H0 верна: X ~ Weibull(beta=2, eta=3) =====\n")
-  res_h0 <- lb_gof_simple_weibull(L, R, beta = beta0, eta = eta0)
+  res_h0 <- lb.gof.simple.weibull(L, R, beta = beta0, eta = eta0)
 
   cat("\n===== H1: неверный параметр формы, beta=1 =====\n")
-  res_h1 <- lb_gof_simple_weibull(L, R, beta = 1, eta = eta0)
+  res_h1 <- lb.gof.simple.weibull(L, R, beta = 1, eta = eta0)
 
   # Weibull(1, eta) совпадает с Exp(eta) — проверка согласованности
   cat("\n===== Проверка: Exp(2) = Weibull(beta=1, eta=2) =====\n")
@@ -247,5 +247,5 @@ if (FALSE) {
     else if (X2[i] >  Z2[i]) { L2[i] <- Z2[i]; R2[i] <- Inf   }
     else                      { L2[i] <- Y2[i]; R2[i] <- Z2[i] }
   }
-  res_exp <- lb_gof_simple_weibull(L2, R2, beta = 1, eta = 2)
+  res_exp <- lb.gof.simple.weibull(L2, R2, beta = 1, eta = 2)
 }
